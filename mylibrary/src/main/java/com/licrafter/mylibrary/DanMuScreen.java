@@ -39,7 +39,6 @@ public class DanMuScreen extends Screen {
 
     @Override
     public void draw(float deltaTime, Canvas canvas) {
-        android.util.Log.d("ljx","size = "+mDanMus.size());
         for (IDanMuItem danMuItem : mDanMus){
             if (!danMuItem.isOut()) {
                 danMuItem.draw(canvas);
