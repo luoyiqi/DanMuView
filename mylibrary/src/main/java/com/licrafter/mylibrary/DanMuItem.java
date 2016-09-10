@@ -41,7 +41,7 @@ public class DanMuItem implements IDanMuItem {
         mBgPaint.setAlpha(150);
         mBgPaint.setAntiAlias(false);
         mBgPaint.setStyle(Paint.Style.FILL);
-        mBgPaint.setShadowLayer(0,0,0,0);
+        mBgPaint.setShadowLayer(0, 0, 0, 0);
     }
 
     @Override
@@ -60,21 +60,20 @@ public class DanMuItem implements IDanMuItem {
             this.mContainerHeight = canvasHeight;
         }
         canvas.save();
-        canvas.translate(mCurrX,mCurrY);
-        RectF bgRect = new RectF(-mPadding,-mPadding/2,mContentWidth+mPadding,mContentHeight+mPadding/2);
-        canvas.drawRoundRect(bgRect,30,30,mBgPaint);
+        canvas.translate(mCurrX, mCurrY);
+        RectF bgRect = new RectF(-mPadding, -mPadding / 2, mContentWidth + mPadding, mContentHeight + mPadding / 2);
+        canvas.drawRoundRect(bgRect, 30, 30, mBgPaint);
         mStaticLayout.draw(canvas);
         canvas.restore();
-        mCurrX = mCurrX - mSpeed*mFactor;
+        mCurrX = mCurrX - mSpeed * mFactor;
     }
 
 
-
-    private void measure(){
+    private void measure() {
         mTextPaint.setAntiAlias(false);
         mTextPaint.setColor(mTextColor);
         mTextPaint.setTextSize(mTextSize);
-        mStaticLayout = new StaticLayout(mContent,mTextPaint,(int) Layout.getDesiredWidth(mContent, 0, mContent.length(), mTextPaint) + 1,
+        mStaticLayout = new StaticLayout(mContent, mTextPaint, (int) Layout.getDesiredWidth(mContent, 0, mContent.length(), mTextPaint) + 1,
                 Layout.Alignment.ALIGN_NORMAL,
                 1.0f,
                 0.0f,
@@ -86,6 +85,16 @@ public class DanMuItem implements IDanMuItem {
     @Override
     public boolean isOut() {
         return mCurrX < 0 && Math.abs(mCurrX) > mContentWidth;
+    }
+
+    @Override
+    public boolean isInCompletely() {
+        return mCurrX+mContentWidth+mPadding<mContainerWidth;
+    }
+
+    @Override
+    public float getScrollDistance(){
+        return mContainerWidth - mCurrX;
     }
 
     @Override
@@ -109,9 +118,10 @@ public class DanMuItem implements IDanMuItem {
     }
 
     @Override
-    public float getPadding(){
+    public float getPadding() {
         return mPadding;
     }
+
     @Override
     public void release() {
         mContent = null;
@@ -138,7 +148,7 @@ public class DanMuItem implements IDanMuItem {
     }
 
     @Override
-    public void setContent(SpannableString content){
+    public void setContent(SpannableString content) {
         mContent = content;
         measure();
     }
@@ -169,7 +179,7 @@ public class DanMuItem implements IDanMuItem {
             return this;
         }
 
-        public Builder setContent(SpannableString content){
+        public Builder setContent(SpannableString content) {
             danMuItem.setContent(content);
             return this;
         }

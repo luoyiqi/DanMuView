@@ -19,6 +19,10 @@ public interface IDanMuItem {
 
     public boolean isOut();
 
+    public boolean isInCompletely();
+
+    public float getScrollDistance();
+
     public int getWidth();
 
     public int getHeight();
