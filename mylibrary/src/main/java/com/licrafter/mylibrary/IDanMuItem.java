@@ -11,9 +11,9 @@ public interface IDanMuItem {
 
     public void setStartPoint(float startX, float startY);
 
-    public void setContent(SpannableString content);
+    public void buildCache(DanMuCache cache);
 
-    public void update(long deltaTime);
+    public void update(SpannableString spannableString);
 
     public void draw(Canvas canvas);
 
@@ -23,15 +23,23 @@ public interface IDanMuItem {
 
     public float getScrollDistance();
 
-    public int getWidth();
+    public float getWidth();
 
-    public int getHeight();
+    public float getHeight();
 
     public float getCurrX();
 
     public float getCurrY();
 
+    public SpannableString getContent();
+
     public float getPadding();
+
+    public void setPadding(int padding);
+
+    public float getFactor();
+
+    public void setFactor(float factor);
 
     public void release();
 }

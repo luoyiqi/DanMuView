@@ -53,11 +53,6 @@ public class CenteredImageSpan extends ImageSpan {
                      int top, int y, int bottom, @NonNull Paint paint) {
         Drawable b = getCachedDrawable();
         b.setBounds(0, 0, 50, 50);
-        RectF rect = new RectF(x,top, 500, bottom);
-        paint.setColor(Color.GREEN);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setShadowLayer(0,0,0,0);
-        //canvas.drawRoundRect(rect, 20, 20, paint);
 
         // font metrics of text to be replaced
         Paint.FontMetricsInt fm = paint.getFontMetricsInt();

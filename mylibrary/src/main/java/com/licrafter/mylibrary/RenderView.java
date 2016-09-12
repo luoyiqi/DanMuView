@@ -31,6 +31,7 @@ public class RenderView extends SurfaceView implements SurfaceHolder.Callback, R
         setWillNotCacheDrawing(true);
         setDrawingCacheEnabled(false);
         setWillNotDraw(true);
+        android.util.Log.d("ljx",isHardwareAccelerated()+"");
 
         mHolder = getHolder();
         mHolder.addCallback(this);
@@ -64,7 +65,6 @@ public class RenderView extends SurfaceView implements SurfaceHolder.Callback, R
         if (mScreen==null){
             throw new RuntimeException("screen is not set");
         }
-        //Debug.startMethodTracing();
         //surface hase been initialied
         while (mRunning.get()) {
             long startTime = android.os.SystemClock.elapsedRealtime();
@@ -77,7 +77,6 @@ public class RenderView extends SurfaceView implements SurfaceHolder.Callback, R
             mHolder.unlockCanvasAndPost(mCanvas);
             float deltaTime = (android.os.SystemClock.elapsedRealtime() - startTime);
         }
-        //Debug.stopMethodTracing();
     }
 
     public void onPause(){

@@ -2,6 +2,9 @@ package com.licrafter.mylibrary;
 
 import android.graphics.Canvas;
 import android.os.SystemClock;
+import android.text.SpannableString;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 
 import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -22,12 +25,13 @@ public class DanMuScreen extends Screen {
     private float mScreenWidth;
     private float mScreenHeight;
 
+    private int mTextSize;
+    private int mTextColor;
+    private TextPaint mTextPaint = new TextPaint();
+
     private HashMap<Integer,CopyOnWriteArrayList<IDanMuItem>> mDanmuMap;
 
 
-    public static DanMuScreen create() {
-        return new DanMuScreen();
-    }
 
     @Override
     public void init(float screenWidth,float screenHeight) {
@@ -64,7 +68,7 @@ public class DanMuScreen extends Screen {
     public void addDanMu(IDanMuItem danmu) {
         int lastedChannel = 0;
         mProxy.prepareDraw(danmu);
-
+        buildCache(danmu);
         for (int i=0;i<mMaxChannel;i++){
             int count = mDanmuMap.get(i).size();
             if (count==0){
@@ -86,5 +90,44 @@ public class DanMuScreen extends Screen {
         mProxy = proxy;
     }
 
+    public void buildCache(IDanMuItem danMuItem){
+        danMuItem.buildCache(new DanMuCache(mTextPaint).buildCache(danMuItem));
+    }
 
+    public void setTextSize(int textSize){
+        mTextSize = textSize;
+        mTextPaint.setTextSize(mTextSize);
+        android.util.Log.d("screen","text size = "+mTextSize);
+    }
+
+    public void setTextColor(int textColor){
+        mTextColor = textColor;
+        mTextPaint.setColor(mTextColor);
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        DanMuScreen screen;
+
+        private Builder() {
+            screen = new DanMuScreen();
+        }
+
+        public Builder setTextSize(int textSize) {
+            screen.setTextSize(textSize);
+            return this;
+        }
+
+        public Builder setTextColor(int textColor) {
+            screen.setTextColor(textColor);
+            return this;
+        }
+
+        public DanMuScreen build() {
+            return screen;
+        }
+    }
 }

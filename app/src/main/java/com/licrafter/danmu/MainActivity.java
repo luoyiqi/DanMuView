@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         urls[3] = "http://i0.hdslb.com/bfs/archive/772f7ca948e044aa5bc45508d8565e8aa5ad0c5f.jpg_320x200.jpg";
         urls[4] = "http://i0.hdslb.com/bfs/archive/21dc6215f5eb23dc3b4143f12560e67bdd7f71d9.jpg_320x200.jpg";
 
-        mScreen = DanMuScreen.create();
+        mScreen = DanMuScreen.builder().setTextColor(Color.WHITE).setTextSize(dip2px(MainActivity.this,13)).build();
         mDanmuView.setScreen(mScreen);
         mScreen.setProxy(new Proxy() {
             private Drawable mDrawable;
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         CenteredImageSpan imageSpan = new CenteredImageSpan(drawable1);
                         final SpannableString spannableString = new SpannableString(" : 恭喜手机号159***789中奖");
                         spannableString.setSpan(imageSpan, 0, 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-                        danMuItem.setContent(spannableString);
+                        danMuItem.update(spannableString);
                     }
 
                     @Override
@@ -110,8 +110,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void danmu(View view){
         for (int i =0;i<1;i++){
-            mScreen.addDanMu(DanMuItem.builder().setContent(spannableString).setSpeedFactor(1.8f)
-                    .setTextColor(Color.WHITE).setTextSize(dip2px(MainActivity.this,13)).build());
+            DanMuItem danMuItem = new DanMuItem(spannableString);
+            danMuItem.setFactor(1.8f);
+            mScreen.addDanMu(danMuItem);
         }
     }
 
