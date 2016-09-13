@@ -1,6 +1,6 @@
 #DanMuView
 
-使用SurfaceView和Canvas做的弹幕view，做了bitmap的缓存即使数量大的时候也不会卡顿了。[Bilibili开源的弹幕view](https://github.com/Bilibili/DanmakuFlameMaster)做的非常好，学习了很多的东西。
+使用SurfaceView和Canvas做的弹幕view，做了bitmap的缓存即使数量大的时候也不会卡顿了。[Bilibili开源的弹幕view](https://github.com/Bilibili/DanmakuFlameMaster)做的非常好.
 
 **TODO**
 
