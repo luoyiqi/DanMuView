@@ -24,6 +24,8 @@ public class DanMuItem implements IDanMuItem {
     private float mCurrY;
     private SpannableString mContent;
     private float mFactor;
+    private int mTextSize;
+    private int mTextColor;
     private int mPadding = 10;
     private DanMuCache mCache;
 
@@ -42,9 +44,7 @@ public class DanMuItem implements IDanMuItem {
     @Override
     public void update(SpannableString content) {
         mContent = content;
-        if (mCache != null) {
-            mCache.buildCache(this);
-        }
+        mCache.buildCache(this);
     }
 
     @Override
@@ -111,6 +111,26 @@ public class DanMuItem implements IDanMuItem {
     @Override
     public void setPadding(int padding) {
         mPadding = padding;
+    }
+
+    @Override
+    public void setTextSize(int size) {
+        mTextSize = size;
+    }
+
+    @Override
+    public int getTextSize() {
+        return mTextSize;
+    }
+
+    @Override
+    public void setTextColor(int color) {
+        mTextColor = color;
+    }
+
+    @Override
+    public int getTextColor() {
+        return mTextColor;
     }
 
     @Override

@@ -37,6 +37,14 @@ public interface IDanMuItem {
 
     public void setPadding(int padding);
 
+    public void setTextSize(int size);
+
+    public int getTextSize();
+
+    public void setTextColor(int color);
+
+    public int getTextColor();
+
     public float getFactor();
 
     public void setFactor(float factor);

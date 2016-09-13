@@ -6,5 +6,6 @@ package com.licrafter.mylibrary;
  **/
 public interface Proxy {
     public void prepareDraw(IDanMuItem danMuItem);
+
     public void releaseResource(IDanMuItem danMuItem);
 }

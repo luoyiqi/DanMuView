@@ -18,9 +18,9 @@ public abstract class Screen {
         mInitialized = new AtomicBoolean(false);
     }
 
-    public abstract void init(float screenWidth,float screenHeight);
+    public abstract void init(float screenWidth, float screenHeight);
 
-    public abstract void draw(float deltaTime,Canvas canvas);
+    public abstract void draw(float deltaTime, Canvas canvas);
 
     public abstract void addDanMu(IDanMuItem danmu);
 

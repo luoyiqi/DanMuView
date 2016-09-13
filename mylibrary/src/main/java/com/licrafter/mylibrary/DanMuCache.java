@@ -17,11 +17,11 @@ public class DanMuCache {
     public Canvas canvas;
     public Bitmap bitmap;
     private StaticLayout mStaticLayout;
-    private TextPaint mTextPaint;
-
     private int width;
+
     private int height;
 
+    private static TextPaint mTextPaint;
     private static Paint mBgPaint;
 
     static {
@@ -31,10 +31,13 @@ public class DanMuCache {
         mBgPaint.setAntiAlias(false);
         mBgPaint.setStyle(Paint.Style.FILL);
         mBgPaint.setShadowLayer(0, 0, 0, 0);
+        mTextPaint = new TextPaint();
+        mTextPaint.setAntiAlias(false);
     }
 
-    public DanMuCache(TextPaint textPaint) {
-        mTextPaint = textPaint;
+    public DanMuCache(int textSize, int textColor) {
+        mTextPaint.setTextSize(textSize);
+        mTextPaint.setColor(textColor);
     }
 
     public synchronized void recycle() {

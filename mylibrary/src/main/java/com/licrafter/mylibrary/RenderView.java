@@ -31,7 +31,7 @@ public class RenderView extends SurfaceView implements SurfaceHolder.Callback, R
         setWillNotCacheDrawing(true);
         setDrawingCacheEnabled(false);
         setWillNotDraw(true);
-        android.util.Log.d("ljx",isHardwareAccelerated()+"");
+        android.util.Log.d("ljx", isHardwareAccelerated() + "");
 
         mHolder = getHolder();
         mHolder.addCallback(this);
@@ -51,10 +51,10 @@ public class RenderView extends SurfaceView implements SurfaceHolder.Callback, R
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if (mScreen==null){
+        if (mScreen == null) {
             throw new RuntimeException("screen is not set");
         }
-        mScreen.init(MeasureSpec.getSize(widthMeasureSpec),MeasureSpec.getSize(heightMeasureSpec));
+        mScreen.init(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec));
     }
 
     @Override
@@ -62,7 +62,7 @@ public class RenderView extends SurfaceView implements SurfaceHolder.Callback, R
         while (!mRender.get()) {
             continue;
         }
-        if (mScreen==null){
+        if (mScreen == null) {
             throw new RuntimeException("screen is not set");
         }
         //surface hase been initialied
@@ -73,20 +73,20 @@ public class RenderView extends SurfaceView implements SurfaceHolder.Callback, R
             }
             mCanvas = mHolder.lockCanvas();
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-            mScreen.draw(startTime,mCanvas);
+            mScreen.draw(startTime, mCanvas);
             mHolder.unlockCanvasAndPost(mCanvas);
             float deltaTime = (android.os.SystemClock.elapsedRealtime() - startTime);
         }
     }
 
-    public void onPause(){
+    public void onPause() {
         mRunning.set(false);
-        if (mRenderThread!=null){
+        if (mRenderThread != null) {
             boolean retry = true;
-            while (retry){
+            while (retry) {
                 try {
                     mRenderThread.join();
-                    mRenderThread=null;
+                    mRenderThread = null;
                     retry = false;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -95,7 +95,7 @@ public class RenderView extends SurfaceView implements SurfaceHolder.Callback, R
         }
     }
 
-    public void setScreen(Screen screen){
+    public void setScreen(Screen screen) {
         mScreen = screen;
     }
 
