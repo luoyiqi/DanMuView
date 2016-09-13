@@ -124,6 +124,14 @@ public class MainActivity extends AppCompatActivity {
         checkStoragePermission();
     }
 
+    public void danmuResume(View view){
+        mDanmuView.resume();
+    }
+
+    public void danmuStop(View view){
+        mDanmuView.onPause();
+    }
+
     @TargetApi(Build.VERSION_CODES.M)
     private void checkStoragePermission() {
         if (PermissionUtil.checkPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
