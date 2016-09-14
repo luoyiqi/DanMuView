@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 requestCreator.into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        android.util.Log.d("ljx","loaded");
                         BitmapDrawable drawable1 = new BitmapDrawable(getResources(),bitmap);
                         CenteredImageSpan imageSpan = new CenteredImageSpan(drawable1);
                         final SpannableString spannableString = new SpannableString(" : 恭喜手机号159***789中奖");

@@ -44,7 +44,11 @@ public class DanMuItem implements IDanMuItem {
     @Override
     public void update(SpannableString content) {
         mContent = content;
-        mCache.buildCache(this);
+        if (mCache!=null){
+            mCache.buildCache(this);
+        }else {
+            mCache = new DanMuCache(mTextSize,mTextColor).buildCache(this);
+        }
     }
 
     @Override
